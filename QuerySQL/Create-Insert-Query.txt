@@ -143,7 +143,7 @@ VALUES
 	SELECT CONCAT(a.Nome, ' ', a.Cognome) AS Trasgressore , v.IndirizzoViolazione, v.Importo, v.DecurtamentoPunti
 	FROM VERBALE AS v
 	JOIN Anagrafica AS a ON v.IdAnagrafica = a.IdAnagrafica
-	WHERE v.DataViolazione BETWEEN '01-02-2009' AND '01-07-2009'
+	WHERE v.DataViolazione BETWEEN '2009-02-01' AND '2009-07-01';
 
 -- 7. Totale degli importi per ogni anagrafico,
 	SELECT CONCAT(a.Nome, ' ', a.Cognome) AS Trasgressore, SUM(v.Importo) AS ImportodeiVerbali
@@ -158,9 +158,7 @@ VALUES
 -- 9. Query che visualizzi Data violazione, Importo e decurtamento punti relativi ad una certa data; 
 	SELECT v.DataViolazione, v.Importo, v.DecurtamentoPunti
 	FROM Verbale AS v 
-	JOIN Anagrafica AS a ON v.IdAnagrafica = a.IdAnagrafica
-	WHERE CONVERT(DATE, v.DataTrascrizioneVerbale) = '16-03-2009'
-	GROUP BY v.DataViolazione, v.Importo, v.DecurtamentoPunti;
+	WHERE v.DataViolazione = '2009-03-15 12:00:00.0000000'
 	
 -- 10. Conteggio delle violazioni contestate raggruppate per Nominativo dell’agente di Polizia;
 	SELECT v.NominativoAgente as AgenteDellaPolizia, COUNT(*) as ViolazioniContestate
